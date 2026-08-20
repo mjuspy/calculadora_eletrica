@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Circuito Elétrico</title>
+     <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="box"><label for="text">aaaaaaaaaaaaaa</label></div>
+    <div class="container">
+        <div class="campo">
+            <label for="tipo">Tipo de Associação:</label>
+            <select id ="tipo" onchange="gerarCamposResistores()">
+                <option Value="serie">Série</option>
+                <option Value="Paralelo">Paralelo</option>
+                <option Value="misto">Mista</option>
+            </select>
+
+            <h3>Geradores em série</h3>
+            <div class="campo">
+            <label for="qtdGeradores">Quantidade de Geradores:</label>
+                <input type="number" id="qtdGeradores" value="1" 
+                min="1" onchange="gerarCamposGeradores()">
+
+            </div>
+                <div id="containerGeradores"></div>
+                    <h3>Resistores</h3>
+                <div class="campo">
+                    <label for="qtdResistores">Quantidade de Resistores:</label>
+            <input type="number" id="qtdResistores" value="3" min="1" onchange="gerarCamposResistores()">
+
+                    </div>
+     <div id="containerResistores"></div>
+     <button onclick="calcular()">Calcular Circuito</button>
+        <div class="resultados" id="painelResultados" style="display: none;">
+            <h3>Resultados</h3>
+            <p><strong>Tensão Total das Fontes:</strong><Span id="vTotal">0</Span> V</p>
+            <p><strong>Resitência Equivalente</strong><Span id="req">0</Span> Ω</p>
+            <p><strong>Corrente Total:</strong><Span id="iTotal">0</Span> A</p>
+            <p><strong>Potência Total Fornecida</strong><Span id="pTotal">0</Span> W</p>
+            <h3>Detalhamento por Resistor</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Resistor</th>
+                        <th>Valor (Ω)</th>
+                        <th>Tensão (V)</th>
+                        <th>Corrente (A)</th>
+                        <th>Potência (W)</th>
+                    </tr>
+                </thead>
+<tbody id="tabelaResistores"></tbody>
+            </table>
+
+        </div>
+    
+    </div>
+    </div>
+</body>
+</html>

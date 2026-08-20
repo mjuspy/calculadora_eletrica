@@ -1,0 +1,14 @@
+.box {
+  width: 250px;
+  height: 150px;
+  background-color: #f0f0f0;
+  border: 2px solid #333;
+
+  /* Mágica do Flexbox */
+  display: flex;
+  justify-content: center; /* Centraliza na horizontal */
+  align-items: center; /* Centraliza na vertical */
+}
+
+.container {
+}
