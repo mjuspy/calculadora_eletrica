@@ -1,14 +1,164 @@
-.box {
-  width: 250px;
-  height: 150px;
-  background-color: #f0f0f0;
-  border: 2px solid #333;
+/* ============================================
+   Calculadora de Resistência Elétrica
+   estilo simples
+   ============================================ */
 
-  /* Mágica do Flexbox */
-  display: flex;
-  justify-content: center; /* Centraliza na horizontal */
-  align-items: center; /* Centraliza na vertical */
+body {
+  margin: 0;
+  padding: 30px 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #eef1f6;
+  color: #333;
 }
 
 .container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.cabecalho {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cabecalho img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 5px;
+}
+
+.cabecalho h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.secao {
+  margin-bottom: 20px;
+}
+
+.secao h2 {
+  font-size: 1rem;
+  color: #3f6fb5;
+  margin-bottom: 8px;
+}
+
+.campos-dinamicos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.campo {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.campos-dinamicos .campo {
+  flex: 1 1 160px;
+  margin-bottom: 0;
+}
+
+.campo label {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f0c93d;
+  color: #333;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #dcb426;
+}
+
+.painel-resultados {
+  display: none;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.painel-resultados h2 {
+  font-size: 1rem;
+  color: #3f6fb5;
+  margin-bottom: 8px;
+}
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.box {
+  flex: 1 1 110px;
+  background-color: #fdf6dc;
+  border: 1px solid #eddb96;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+}
+
+.box .stat-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #777;
+}
+
+.box .stat-valor {
+  font-weight: bold;
+  color: #b8860b;
+}
+
+.tabela-wrap {
+  overflow-x: auto;
+}
+
+.tabela-resistores {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.tabela-resistores th,
+.tabela-resistores td {
+  border: 1px solid #ddd;
+  padding: 6px;
+  text-align: center;
+}
+
+.tabela-resistores th {
+  background-color: #eef1f6;
+  color: #3f6fb5;
 }
