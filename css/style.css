@@ -11,15 +11,6 @@ body {
   color: #333;
 }
 
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
 .cabecalho {
   text-align: center;
   margin-bottom: 20px;
@@ -32,8 +23,108 @@ body {
 }
 
 .cabecalho h1 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: 0;
+}
+
+/* Layout principal: diagrama grande à esquerda, calculadora à direita */
+.layout {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Painel do diagrama ---------- */
+.painel-diagrama {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  position: sticky;
+  top: 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  .painel-diagrama {
+    position: static;
+  }
+}
+
+.painel-diagrama h2 {
+  font-size: 1rem;
+  color: #3f6fb5;
+  margin: 0 0 10px 0;
+}
+
+.diagrama-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagrama-container svg {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+}
+
+.fio {
+  stroke: #333;
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.resistor-caixa {
+  fill: #fdf6dc;
+  stroke: #b8860b;
+  stroke-width: 2;
+}
+
+.resistor-texto {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  fill: #333;
+  text-anchor: middle;
+}
+
+.bateria-linha-longa {
+  stroke: #333;
+  stroke-width: 3;
+}
+
+.bateria-linha-curta {
+  stroke: #333;
+  stroke-width: 6;
+}
+
+.bateria-texto {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  fill: #3f6fb5;
+  text-anchor: middle;
+}
+
+/* ---------- Painel da calculadora ---------- */
+.painel-calculadora {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
 }
 
 .secao {
@@ -81,6 +172,7 @@ body {
   border-radius: 4px;
   font-size: 0.95rem;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 button {
@@ -99,6 +191,29 @@ button {
 
 button:hover {
   background-color: #dcb426;
+}
+
+.botao-secundario {
+  background-color: #e9ecf2;
+  color: #444;
+}
+
+.botao-secundario:hover {
+  background-color: #d8dce4;
+}
+
+.mensagem-ohm {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  min-height: 1em;
+}
+
+.mensagem-ohm.sucesso {
+  color: #2e7d32;
+}
+
+.mensagem-ohm.erro {
+  color: #c0392b;
 }
 
 .painel-resultados {
@@ -123,8 +238,8 @@ button:hover {
 
 .box {
   flex: 1 1 110px;
-  background-color: #fdf6dc;
-  border: 1px solid #eddb96;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
   border-radius: 6px;
   padding: 8px;
   text-align: center;
@@ -138,7 +253,7 @@ button:hover {
 
 .box .stat-valor {
   font-weight: bold;
-  color: #b8860b;
+  color: #333;
 }
 
 .tabela-wrap {
@@ -161,4 +276,26 @@ button:hover {
 .tabela-resistores th {
   background-color: #eef1f6;
   color: #3f6fb5;
+}
+
+/* ---------- Conta de Luz ---------- */
+.secao-conta-luz {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #ddd;
+}
+
+.dica-conta-luz {
+  font-size: 0.75rem;
+  color: #777;
+  margin: 0 0 8px 0;
+}
+
+/* ---------- Lei de Ohm ---------- */
+.secao-lei-ohm {
+  background-color: #eef4fb;
+  border: 1px solid #cfe0f3;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
 }

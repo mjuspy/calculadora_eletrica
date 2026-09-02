@@ -7,80 +7,145 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="cabecalho">
-            <img src="../img/lampada.jpg" alt="Lâmpada">
-            <h1>Calculadora Circuito Elétrico</h1>
+    <div class="cabecalho">
+        <img src="../img/lampada.png" alt="Lâmpada">
+        <h1>Calculadora Circuito Elétrico</h1>
+    </div>
+
+    <div class="layout">
+        <div class="painel-diagrama">
+            <h2>Diagrama do Circuito</h2>
+            <div id="diagramaContainer" class="diagrama-container"></div>
         </div>
 
-        <div class="secao">
-            <h2>Tipo de Circuito</h2>
-            <div class="campo">
-                <label for="tipo">Tipo de Associação:</label>
-                <select id="tipo" onchange="gerarCamposResistores()">
-                    <option value="serie">Série</option>
-                    <option value="paralelo">Paralelo</option>
-                    <option value="misto">Mista</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="secao">
-            <h2>Geradores em Série</h2>
-            <div class="campo">
-                <label for="qtdGeradores">Quantidade de Geradores:</label>
-                <input type="number" id="qtdGeradores" value="1" min="1" onchange="gerarCamposGeradores()">
-            </div>
-            <div id="containerGeradores" class="campos-dinamicos"></div>
-        </div>
-
-        <div class="secao">
-            <h2>Resistores</h2>
-            <div class="campo">
-                <label for="qtdResistores">Quantidade de Resistores:</label>
-                <input type="number" id="qtdResistores" value="3" min="1" onchange="gerarCamposResistores()">
-            </div>
-            <div id="containerResistores" class="campos-dinamicos"></div>
-        </div>
-
-        <button onclick="calcular()">Calcular Circuito</button>
-
-        <div class="painel-resultados" id="painelResultados">
-            <h2>Resultados</h2>
-
-            <div class="stats-grid">
-                <div class="box">
-                    <span class="stat-label">Tensão Total das Fontes</span>
-                    <span><span id="vTotal" class="stat-valor">0</span> V</span>
+        <div class="painel-calculadora">
+            <div class="secao secao-lei-ohm">
+                <h2>Lei de Ohm — Calculadora</h2>
+                <p class="dica-conta-luz">Preencha exatamente 2 valores conhecidos e calcule os outros 2.</p>
+                <div class="campos-dinamicos">
+                    <div class="campo">
+                        <label for="ohmV">Tensão V (Volts):</label>
+                        <input type="number" id="ohmV" step="any" placeholder="ex: 12">
+                    </div>
+                    <div class="campo">
+                        <label for="ohmI">Corrente I (Ampères):</label>
+                        <input type="number" id="ohmI" step="any" placeholder="ex: 2">
+                    </div>
+                    <div class="campo">
+                        <label for="ohmR">Resistência R (Ohms):</label>
+                        <input type="number" id="ohmR" step="any" placeholder="ex: 6">
+                    </div>
+                    <div class="campo">
+                        <label for="ohmP">Potência P (Watts):</label>
+                        <input type="number" id="ohmP" step="any" placeholder="ex: 24">
+                    </div>
                 </div>
-                <div class="box">
-                    <span class="stat-label">Resistência Equivalente</span>
-                    <span><span id="req" class="stat-valor">0</span> Ω</span>
-                </div>
-                <div class="box">
-                    <span class="stat-label">Corrente Total</span>
-                    <span><span id="iTotal" class="stat-valor">0</span> A</span>
-                </div>
-                <div class="box">
-                    <span class="stat-label">Potência Total Fornecida</span>
-                    <span><span id="pTotal" class="stat-valor">0</span> W</span>
+                <button onclick="calcularLeiOhm()">Calcular</button>
+                <button onclick="limparLeiOhm()" class="botao-secundario">Limpar</button>
+                <p id="ohmMensagem" class="mensagem-ohm"></p>
+            </div>
+
+            <div class="secao">
+                <h2>Tipo de Circuito</h2>
+                <div class="campo">
+                    <label for="tipo">Tipo de Associação:</label>
+                    <select id="tipo" onchange="gerarCamposResistores()">
+                        <option value="serie">Série</option>
+                        <option value="paralelo">Paralelo</option>
+                        <option value="misto">Mista</option>
+                    </select>
                 </div>
             </div>
 
-            <h2>Detalhamento por Resistor</h2>
-            <div class="tabela-wrap">
-                <table class="tabela-resistores">
-                    <thead>
-                        <tr>
-                            <th>Resistor</th>
-                            <th>Valor (Ω)</th>
-                            <th>Tensão (V)</th>
-                            <th>Corrente (A)</th>
-                            <th>Potência (W)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tabelaResistores"></tbody>
-                </table>
+            <div class="secao">
+                <h2>Geradores em Série</h2>
+                <div class="campo">
+                    <label for="qtdGeradores">Quantidade de Geradores:</label>
+                    <input type="number" id="qtdGeradores" value="1" min="1" onchange="gerarCamposGeradores()">
+                </div>
+                <div id="containerGeradores" class="campos-dinamicos"></div>
+            </div>
+
+            <div class="secao">
+                <h2>Resistores</h2>
+                <div class="campo">
+                    <label for="qtdResistores">Quantidade de Resistores:</label>
+                    <input type="number" id="qtdResistores" value="3" min="1" onchange="gerarCamposResistores()">
+                </div>
+                <div id="containerResistores" class="campos-dinamicos"></div>
+            </div>
+
+            <button onclick="calcular()">Calcular Circuito</button>
+            <p id="circuitoMensagem" class="mensagem-ohm"></p>
+
+            <div class="painel-resultados" id="painelResultados">
+                <h2>Resultados</h2>
+
+                <div class="stats-grid">
+                    <div class="box">
+                        <span class="stat-label">Tensão Total das Fontes</span>
+                        <span><span id="vTotal" class="stat-valor">0</span> V</span>
+                    </div>
+                    <div class="box">
+                        <span class="stat-label">Resistência Equivalente</span>
+                        <span><span id="req" class="stat-valor">0</span> Ω</span>
+                    </div>
+                    <div class="box">
+                        <span class="stat-label">Corrente Total</span>
+                        <span><span id="iTotal" class="stat-valor">0</span> A</span>
+                    </div>
+                    <div class="box">
+                        <span class="stat-label">Potência Total Fornecida</span>
+                        <span><span id="pTotal" class="stat-valor">0</span> W</span>
+                    </div>
+                </div>
+
+                <h2>Detalhamento por Resistor</h2>
+                <div class="tabela-wrap">
+                    <table class="tabela-resistores">
+                        <thead>
+                            <tr>
+                                <th>Resistor</th>
+                                <th>Valor (Ω)</th>
+                                <th>Tensão (V)</th>
+                                <th>Corrente (A)</th>
+                                <th>Potência (W)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelaResistores"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="secao secao-conta-luz">
+                <h2>💡 Conta de Luz Estimada</h2>
+                <p class="dica-conta-luz">Usa a potência total calculada acima para estimar o consumo e o custo mensal.</p>
+                <div class="campos-dinamicos">
+                    <div class="campo">
+                        <label for="precoKwh">Preço do kWh (R$):</label>
+                        <input type="number" id="precoKwh" value="0.90" min="0" step="any" oninput="atualizarContaLuz()">
+                    </div>
+                    <div class="campo">
+                        <label for="horasDia">Uso por dia (horas):</label>
+                        <input type="number" id="horasDia" value="4" min="0" step="any" oninput="atualizarContaLuz()">
+                    </div>
+                    <div class="campo">
+                        <label for="diasMes">Dias no mês:</label>
+                        <input type="number" id="diasMes" value="30" min="1" step="1" oninput="atualizarContaLuz()">
+                    </div>
+                </div>
+                <p id="contaLuzMensagem" class="mensagem-ohm"></p>
+
+                <div class="stats-grid">
+                    <div class="box">
+                        <span class="stat-label">Consumo Mensal</span>
+                        <span><span id="consumoMensal" class="stat-valor">0</span> kWh</span>
+                    </div>
+                    <div class="box">
+                        <span class="stat-label">Custo Mensal Estimado</span>
+                        <span>R$ <span id="custoMensal" class="stat-valor">0</span></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
